@@ -1,5 +1,4 @@
 {
-  "extends": "react-app",
   "plugins": ["prettier"],
   "rules": {
     "camelcase": 0,
