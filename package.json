@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Kadauchi/hit-notifier/issues"
   },
-  "homepage": "https://github.com/Kadauchi/hit-notifier#readme"
+  "homepage": "https://github.com/Kadauchi/hit-notifier#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "eslint": "^5.16.0",
+    "prettier": "^1.17.0"
+  }
 }
