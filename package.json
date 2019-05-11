@@ -1,0 +1,19 @@
+{
+  "name": "hit-notifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kadauchi/hit-notifier.git"
+  },
+  "author": "Brandon Hellman (Kadauchi)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kadauchi/hit-notifier/issues"
+  },
+  "homepage": "https://github.com/Kadauchi/hit-notifier#readme"
+}
