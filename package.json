@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm start --prefix server\" \"npm start --prefix web\" ",
+    "start": "concurrently --kill-others \"npm start --prefix server\" \"npm start --prefix web\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
