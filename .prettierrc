@@ -1,0 +1,11 @@
+{
+  "extends": "react-app",
+  "plugins": ["prettier"],
+  "rules": {
+    "camelcase": 0,
+    "linebreak-style": 0,
+    "max-len": ["error", { "code": 120 }],
+    "quotes": ["error", "backtick"],
+    "prettier/prettier": "error"
+  }
+}
