@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-function Header({ classes }) {
+function Header({ classes, connected }) {
   return (
     <AppBar>
       <Toolbar>
@@ -20,11 +20,22 @@ function Header({ classes }) {
         </Typography>
 
         <Typography className={classes.right} color="inherit">
-          Turkers Connected: 100
+          Turkers Connected: {connected}
         </Typography>
       </Toolbar>
     </AppBar>
   );
 }
 
-export default withStyles(styles)(Header);
+function mapStateToProps(state) {
+  return {
+    connected: state.connected,
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    null,
+  )(Header),
+);
