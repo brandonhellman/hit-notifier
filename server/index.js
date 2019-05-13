@@ -29,6 +29,14 @@ io.on(`connection`, (socket) => {
   });
 });
 
+function handleHistory(hit) {
+  history.unshift(hit);
+
+  if (history.length > 10) {
+    history.pop();
+  }
+}
+
 function handleHIT(html, url) {
   const match = html.match(/projects\/([A-Z0-9]+)\/tasks/);
 
@@ -43,14 +51,25 @@ function handleHIT(html, url) {
     return;
   }
 
-  const item = { html, url, id: hitSetId };
+  const hit = { html, url, id: hitSetId, found: Date.now() };
 
-  io.sockets.emit(`hit`, item);
-  history.unshift(item);
+  handleHistory(hit);
+  io.sockets.emit(`hit`, hit);
+}
 
-  // Only keep the last 10 HITs.
-  if (history.length > 10) {
-    history.pop();
+function handlePost(post, url) {
+  const $ = cheerio.load(post.message_html);
+  const hits = $(`.ctaBbcodeTable`);
+
+  for (let i = 0; i < hits.length; i++) {
+    const hit = hits.eq(i);
+    const html = $(`<div>`)
+      .append(hit.clone())
+      .html();
+
+    if (hit.find(`a[href^="https://worker.mturk.com/"]`)[0] && hit.find(`:contains(Reward)`)[0]) {
+      handleHIT(html, url);
+    }
   }
 }
 
@@ -66,22 +85,13 @@ async function fetchTVF() {
 
 async function mturkcrowd() {
   const posts = await fetchMTC();
-
-  posts.forEach((post) => {
-    const $ = cheerio.load(post.message_html);
-    const hits = $(`.ctaBbcodeTable`);
-
-    for (let i = 0; i < hits.length; i++) {
-      const hit = hits.eq(i);
-      const html = $(`<div>`)
-        .append(hit.clone())
-        .html();
-
-      if (hit.find(`a[href^="https://worker.mturk.com/"]`)[0] && hit.find(`:contains(Reward)`)[0]) {
-        handleHIT(html, `http://mturkcrowd.com/posts/${post.post_id}`);
-      }
-    }
-  });
+  posts.forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
 }
 
-setInterval(mturkcrowd, 30000);
+async function turkerviewforum() {
+  const posts = await fetchTVF();
+  posts.forEach((post) => handlePost(post, `https://forum.turkerview.com/posts/${post.post_id}`));
+}
+
+setInterval(mturkcrowd, 15000);
+// setInterval(turkerviewforum, 15000);
