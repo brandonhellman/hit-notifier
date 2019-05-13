@@ -30,21 +30,20 @@ io.on(`connection`, (socket) => {
 });
 
 function handleHIT(html, url) {
-  const hitSetId = html.match(/projects\/([A-Z0-9]+)\/tasks/);
+  const match = html.match(/projects\/([A-Z0-9]+)\/tasks/);
 
-  // Skip if there is no hit set id.
-  if (!hitSetId) {
+  if (!match) {
     return;
   }
 
-  // Skip if hit is in the history.
-  history.forEach(({ html }) => {
-    if (html.includes(hitSetId)) {
-      return;
-    }
-  });
+  const hitSetId = match[1];
+  const inHistory = history.some(({ id }) => id === hitSetId);
 
-  const item = { html, url };
+  if (inHistory) {
+    return;
+  }
+
+  const item = { html, url, id: hitSetId };
 
   io.sockets.emit(`hit`, item);
   history.unshift(item);
