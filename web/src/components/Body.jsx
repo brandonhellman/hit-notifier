@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,6 +13,15 @@ const styles = {
     flexGrow: 1,
     marginTop: 80,
   },
+  flex: {
+    display: `flex`,
+    alignItems: `center`,
+    justifyContent: `center`,
+  },
+  flexItem: {
+    marginTop: 5,
+    maxWidth: 800,
+  },
 };
 
 function Body({ classes }) {
@@ -24,17 +32,21 @@ function Body({ classes }) {
   }
 
   return (
-    <Paper className={classes.root}>
+    <div className={classes.root}>
       <Tabs value={tab} onChange={handleTab} indicatorColor="primary" textColor="primary" centered>
         <Tab label="Latest" />
         <Tab label="Previous" />
-        <Tab label="Options" />
+        <Tab label="Settings" />
       </Tabs>
 
-      {tab === 0 && <Latest />}
-      {tab === 1 && <Previous />}
-      {tab === 2 && <Settings />}
-    </Paper>
+      <div className={classes.flex}>
+        <div className={classes.flexItem}>
+          {tab === 0 && <Latest />}
+          {tab === 1 && <Previous />}
+          {tab === 2 && <Settings />}
+        </div>
+      </div>
+    </div>
   );
 }
 
