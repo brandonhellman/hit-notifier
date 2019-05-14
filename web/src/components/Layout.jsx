@@ -26,7 +26,7 @@ function Layout({ classes, children, type }) {
 
 function mapStateToProps(state) {
   return {
-    type: state.theme,
+    type: state.settings.theme,
   };
 }
 
