@@ -1,4 +1,4 @@
-import store from './redux/store';
+import { store } from './redux/store';
 import socketIoClient from 'socket.io-client';
 
 import { connectedUpdate, hitAdded, hitHistory } from './redux/actions';
