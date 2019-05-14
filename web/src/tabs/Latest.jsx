@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import { getFoundAtOn } from '../functions';
+import { getPostedAtOn } from '../functions';
 
 const styles = {
   flex: {
@@ -26,7 +26,7 @@ function Latest({ classes, hit }) {
     <>
       <div className={classes.flex}>
         <Typography gutterBottom>
-          <Link href={hit.url}>{getFoundAtOn(hit)}</Link>
+          <Link href={hit.url}>{getPostedAtOn(hit)}</Link>
         </Typography>
       </div>
       <Paper className={classes.paper}>

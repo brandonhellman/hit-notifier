@@ -37,7 +37,7 @@ function handleHistory(hit) {
   }
 }
 
-function handleHIT(html, url) {
+function handleHIT(html, url, posted) {
   const match = html.match(/projects\/([A-Z0-9]+)\/tasks/);
 
   if (!match) {
@@ -51,7 +51,7 @@ function handleHIT(html, url) {
     return;
   }
 
-  const hit = { html, url, id: hitSetId, found: Date.now() };
+  const hit = { html, url, posted, id: hitSetId };
 
   handleHistory(hit);
   io.sockets.emit(`hit`, hit);
@@ -68,7 +68,7 @@ function handlePost(post, url) {
       .html();
 
     if (hit.find(`a[href^="https://worker.mturk.com/"]`)[0] && hit.find(`:contains(Reward)`)[0]) {
-      handleHIT(html, url);
+      handleHIT(html, url, post.post_date * 1000);
     }
   }
 }

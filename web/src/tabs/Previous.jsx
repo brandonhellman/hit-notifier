@@ -8,7 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import { getFoundAtOn } from '../functions';
+import { getPostedAtOn } from '../functions';
 
 
 function Previous({ hits }) {
@@ -23,7 +23,7 @@ function Previous({ hits }) {
       {hits.map((hit) => (
         <ExpansionPanel key={hit.id} expanded={expanded === hit.id} onChange={() => handleChange(hit.id)}>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
-            <Typography>{getFoundAtOn(hit)}</Typography>
+            <Typography>{getPostedAtOn(hit)}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography component="div">{renderHTML(hit.html)}</Typography>
