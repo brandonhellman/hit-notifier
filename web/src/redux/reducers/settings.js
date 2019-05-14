@@ -1,11 +1,11 @@
 const initialState = {
-  theme: `light`,
+  dark: false,
 };
 
 function SETTINGS_TOGGLE_THEME(state, action) {
   return {
     ...state,
-    theme: state.theme === `light` ? `dark` : `light`,
+    dark: action.payload,
   };
 }
 
