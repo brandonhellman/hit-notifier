@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import reducers from './reducers';
 
@@ -11,8 +11,12 @@ const persistConfig = {
   whitelist: [`settings`],
 };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const loggerConfig = {
+  collapsed: true,
+};
 
+const persistedReducer = persistReducer(persistConfig, reducers);
+const logger = createLogger(loggerConfig);
 const store = createStore(persistedReducer, applyMiddleware(logger));
 const persistor = persistStore(store);
 
