@@ -12,7 +12,14 @@ const styles = {
 };
 
 function Layout({ classes, children, type }) {
-  const theme = createMuiTheme({ palette: { type } });
+  const theme = createMuiTheme({
+    palette: {
+      type,
+    },
+    typography: {
+      useNextVariants: true,
+    },
+  });
 
   return (
     <MuiThemeProvider theme={theme}>
