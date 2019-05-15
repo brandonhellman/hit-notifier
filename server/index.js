@@ -5,10 +5,11 @@ const express = require(`express`);
 const http = require(`http`);
 const socketIo = require(`socket.io`);
 
+const { delay, port } = require(`./constants`);
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-const port = 8080;
 
 let connections = 0;
 let history = [];
@@ -91,7 +92,6 @@ async function fetchTVF() {
 }
 
 async function mturkcrowd() {
-  console.log(`mturkcrowd`);
   const posts = await fetchMTC();
   posts.forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
 }
@@ -101,5 +101,5 @@ async function turkerviewforum() {
   posts.forEach((post) => handlePost(post, `https://forum.turkerview.com/posts/${post.post_id}`));
 }
 
-setInterval(mturkcrowd, 15000);
-// setInterval(turkerviewforum, 15000);
+setInterval(mturkcrowd, delay);
+setInterval(turkerviewforum, delay);
