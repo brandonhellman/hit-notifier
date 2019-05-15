@@ -10,7 +10,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { getPostedAtOn } from '../functions';
 
-
 function Previous({ hits }) {
   const [expanded, setExpanded] = useState(null);
 
@@ -31,9 +30,7 @@ function Previous({ hits }) {
         </ExpansionPanel>
       ))}
     </>
-  ) : (
-    <div>Previous</div>
-  );
+  ) : null;
 }
 
 function mapStateToProps(state) {

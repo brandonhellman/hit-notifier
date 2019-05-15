@@ -33,9 +33,7 @@ function Latest({ classes, hit }) {
         <Typography component="div">{renderHTML(hit.html)}</Typography>
       </Paper>
     </>
-  ) : (
-    <div>No latest HITs found =(</div>
-  );
+  ) : null;
 }
 
 function mapStateToProps(state) {
