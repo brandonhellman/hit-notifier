@@ -33,6 +33,8 @@ function Body({ classes }) {
 
   return (
     <div className={classes.root}>
+      <base target="_blank" />
+
       <Tabs value={tab} onChange={handleTab} indicatorColor="primary" textColor="primary" centered>
         <Tab label="Latest" />
         <Tab label="Previous" />
