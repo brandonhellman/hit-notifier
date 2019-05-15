@@ -15,6 +15,9 @@ function Layout({ classes, children, type }) {
   const theme = createMuiTheme({
     palette: {
       type,
+      primary: {
+        main: `#0275d8`,
+      },
     },
     typography: {
       useNextVariants: true,
