@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
+import Github from './Github';
+
 const styles = {
   right: {
     marginLeft: `auto`,
@@ -22,6 +24,8 @@ function Header({ classes, connected }) {
         <Typography className={classes.right} color="inherit">
           Turkers Connected: {connected}
         </Typography>
+
+        <Github />
       </Toolbar>
     </AppBar>
   );
