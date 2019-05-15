@@ -3,7 +3,8 @@ import socketIoClient from 'socket.io-client';
 
 import { connectedUpdate, hitAdded, hitHistory } from './redux/actions';
 
-const socket = socketIoClient(`http://127.0.0.1:8080`);
+const url = process.env.NODE_ENV === `production` ? `http://http://192.241.193.247:8080` : `http://localhost:8080`;
+const socket = socketIoClient(url);
 
 socket.on(`connections`, (data) => {
   store.dispatch(connectedUpdate(data));
