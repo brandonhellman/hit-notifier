@@ -1,5 +1,19 @@
-const initialState = {
+export const initialState = {
+  // General
   dark: false,
+
+  // Notifications
+  hitNotification: true,
+  hitSound: ``,
+  hitVolume: 100,
+
+  // Filters
+  hideMasters: false,
+  hideUsOnly: false,
+
+  // Panda
+  hitCatcher: false,
+  pandaCrazy: false,
 };
 
 function SETTINGS_TOGGLE_THEME(state, action) {
