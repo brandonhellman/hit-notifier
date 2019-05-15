@@ -44,19 +44,19 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardContent>
           <FormControlLabel
             control={<Checkbox checked={settings.hitNotification} onChange={handleChecked(`hitNotification`)} />}
-            label="Notification"
+            label="Desktop Notification"
           />
 
           <TextField
             fullWidth
             inputProps={{ max: '100', min: '0', step: '1' }}
-            label="Volume"
+            label="New HIT Volume"
             onChange={handleNumber(`hitVolume`)}
             type="number"
             value={settings.hitVolume}
           />
           <FormControl className={classes.formControl}>
-            <InputLabel>New Project Audio</InputLabel>
+            <InputLabel>New HIT Audio</InputLabel>
             <Select
               className={classes.select}
               MenuProps={{
@@ -86,10 +86,12 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardHeader title="Filters" />
         <CardContent>
           <FormControlLabel
+            disabled
             control={<Checkbox checked={settings.hideMasters} onChange={handleChecked(`hideMasters`)} />}
             label="Hide Masters"
           />
           <FormControlLabel
+            disabled
             control={<Checkbox checked={settings.hideUsOnly} onChange={handleChecked(`hideUsOnly`)} />}
             label="Hide US Only"
           />
@@ -102,10 +104,12 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardHeader title="Panda Buttons" />
         <CardContent>
           <FormControlLabel
+            disabled
             control={<Checkbox checked={settings.hitCatcher} onChange={handleChecked(`hitCatcher`)} />}
             label="HIT Catcher"
           />
           <FormControlLabel
+            disabled
             control={<Checkbox checked={settings.pandaCrazy} onChange={handleChecked(`pandaCrazy`)} />}
             label="Panda Crazy"
           />
