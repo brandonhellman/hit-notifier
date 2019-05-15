@@ -20,7 +20,11 @@ const styles = {
   },
   flexItem: {
     marginTop: 5,
+    width: `100%`,
     maxWidth: 800,
+  },
+  tabsContainer: {
+    padding: 5,
   },
 };
 
@@ -43,9 +47,11 @@ function Body({ classes }) {
 
       <div className={classes.flex}>
         <div className={classes.flexItem}>
-          {tab === 0 && <Latest />}
-          {tab === 1 && <Previous />}
-          {tab === 2 && <Settings />}
+          <div className={classes.tabsContainer}>
+            {tab === 0 && <Latest />}
+            {tab === 1 && <Previous />}
+            {tab === 2 && <Settings />}
+          </div>
         </div>
       </div>
     </div>
