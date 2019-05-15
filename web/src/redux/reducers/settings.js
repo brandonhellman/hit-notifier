@@ -16,17 +16,17 @@ export const initialState = {
   pandaCrazy: false,
 };
 
-function SETTINGS_TOGGLE_THEME(state, action) {
+function SETTINGS_UPDATE(state, action) {
   return {
     ...state,
-    dark: action.payload,
+    ...action.payload,
   };
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case `SETTINGS_TOGGLE_THEME`:
-      return SETTINGS_TOGGLE_THEME(state, action);
+    case `SETTINGS_UPDATE`:
+      return SETTINGS_UPDATE(state, action);
     default:
       return state;
   }

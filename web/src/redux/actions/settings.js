@@ -1,6 +1,6 @@
-export function settingsToggleTheme(payload) {
+export function settingsUpdate(payload) {
   return {
-    type: `SETTINGS_TOGGLE_THEME`,
+    type: `SETTINGS_UPDATE`,
     payload,
   };
 }
