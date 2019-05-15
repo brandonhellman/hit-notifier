@@ -1,3 +1,4 @@
+const argv = require('yargs').argv;
 const axios = require(`axios`);
 const cheerio = require(`cheerio`);
 const express = require(`express`);
@@ -7,16 +8,22 @@ const socketIo = require(`socket.io`);
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-const port = 3001;
+const port = 8080;
 
 let connections = 0;
 let history = [];
 
+app.use(express.static(`${__dirname}/build`));
+
 app.get(`*`, (req, res) => {
-  res.redirect(`http://localhost:3000/`);
+  if (argv.dev === `true`) {
+    res.redirect(`http://localhost:3000/`);
+  } else {
+    res.sendFile(`${__dirname}/build/index.html`);
+  }
 });
 
-io.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server listening on port ${port}!`);
 });
 
@@ -84,6 +91,7 @@ async function fetchTVF() {
 }
 
 async function mturkcrowd() {
+  console.log(`mturkcrowd`);
   const posts = await fetchMTC();
   posts.forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
 }
