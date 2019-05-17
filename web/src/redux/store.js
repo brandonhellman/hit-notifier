@@ -5,13 +5,15 @@ import { createLogger } from 'redux-logger';
 
 import reducers from './reducers';
 import { initialState as initialSettings } from './reducers/settings';
+import filter from './middleware/filter';
+import audio from './middleware/audio';
 
 const persistConfig = {
   key: `settings`,
   version: 1,
   storage: storage,
   whitelist: [`settings`],
-  migrate: (state) => {
+  migrate(state) {
     return Promise.resolve(
       state
         ? {
@@ -32,7 +34,7 @@ const loggerConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 const logger = createLogger(loggerConfig);
-const store = createStore(persistedReducer, applyMiddleware(logger));
+const store = createStore(persistedReducer, applyMiddleware(filter, audio, logger));
 const persistor = persistStore(store);
 
 export { store, persistor };
