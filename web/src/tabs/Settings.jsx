@@ -43,11 +43,6 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
       <Card raised>
         <CardHeader title="Notifications" />
         <CardContent>
-          <FormControlLabel
-            control={<Checkbox checked={settings.hitNotification} onChange={handleChecked(`hitNotification`)} />}
-            label="Desktop Notification"
-          />
-
           <TextField
             fullWidth
             inputProps={{ max: '100', min: '0', step: '10' }}
@@ -56,6 +51,7 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
             type="number"
             value={settings.hitVolume}
           />
+
           <FormControl className={classes.formControl}>
             <InputLabel>New HIT Audio</InputLabel>
             <Select
@@ -78,6 +74,13 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
               <MenuItem value="sweetAlert5">Sweet Alert 5</MenuItem>
             </Select>
           </FormControl>
+
+          <FormControlLabel
+            control={
+              <Checkbox checked={settings.hitNotification} onChange={handleChecked(`hitNotification`)} />
+            }
+            label="Desktop Notification"
+          />
         </CardContent>
       </Card>
 
