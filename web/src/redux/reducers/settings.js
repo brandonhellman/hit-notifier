@@ -3,7 +3,7 @@ export const initialState = {
   dark: false,
 
   // Notifications
-  hitNotification: true,
+  hitNotification: false,
   hitAudio: ``,
   hitVolume: 100,
 
