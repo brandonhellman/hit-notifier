@@ -27,13 +27,13 @@ function Latest({ classes, hit }) {
     <>
       <div className={classes.flex}>
         <Typography gutterBottom>
+          {hit.isMasters && <Chip color="secondary" label="Masters" />}
+          {hit.isUsOnly && <Chip color="secondary" label="US Only" />}
           <Link href={hit.url}>{getPostedAtOn(hit)}</Link>
         </Typography>
       </div>
       <Paper className={classes.paper}>
         <Typography component="div">{renderHTML(hit.html)}</Typography>
-        {hit.isMasters && <Chip color="secondary" label="Masters" />}
-        {hit.isUsOnly && <Chip color="secondary" label="US Only" />}
       </Paper>
     </>
   ) : null;
