@@ -53,7 +53,8 @@ function isMasters(html) {
 
 function isUsOnly(html) {
   const mtsUs = html.match(/(Qualifications:).+(Location EqualTo US)/gi);
-  return Boolean(mtsUs);
+  const mtsUs2 = html.match(/(Qualifications:).+(Location In US)/gi);
+  return Boolean(mtsUs || mtsUs2);
 }
 
 function handleHIT(html, url, posted) {
