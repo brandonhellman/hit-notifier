@@ -4,6 +4,8 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
 
+import '../css/links.css';
+
 import Latest from '../tabs/Latest';
 import Previous from '../tabs/Previous';
 import Settings from '../tabs/Settings';
