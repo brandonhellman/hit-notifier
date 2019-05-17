@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import renderHTML from 'react-render-html';
 
+import Chip from '@material-ui/core/Chip';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -22,6 +23,8 @@ function Previous({ hits }) {
       {hits.map((hit) => (
         <ExpansionPanel key={hit.id} expanded={expanded === hit.id} onChange={() => handleChange(hit.id)}>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+            {hit.isMasters && <Chip color="secondary" label="Masters" />}
+            {hit.isUsOnly && <Chip color="secondary" label="US Only" />}
             <Typography>{getPostedAtOn(hit)}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

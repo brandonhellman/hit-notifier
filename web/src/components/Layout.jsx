@@ -22,6 +22,14 @@ function Layout({ classes, children, type }) {
     typography: {
       useNextVariants: true,
     },
+    overrides: {
+      MuiChip: {
+        root: {
+          height: `auto`,
+          marginRight: 8,
+        },
+      },
+    },
   });
 
   return (

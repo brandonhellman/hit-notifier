@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import renderHTML from 'react-render-html';
 
+import Chip from '@material-ui/core/Chip';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -31,6 +32,8 @@ function Latest({ classes, hit }) {
       </div>
       <Paper className={classes.paper}>
         <Typography component="div">{renderHTML(hit.html)}</Typography>
+        {hit.isMasters && <Chip color="secondary" label="Masters" />}
+        {hit.isUsOnly && <Chip color="secondary" label="US Only" />}
       </Paper>
     </>
   ) : null;
