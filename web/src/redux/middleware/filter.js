@@ -1,34 +1,20 @@
 function HIT_ADDED(store, next, action) {
   const state = store.getState();
 
-  if (state.settings.hideMasters && action.payload.isMasters) {
-    console.warn(`filtered masters hit`, action.payload);
-    return;
-  }
+  const mastersFilter = state.settings.hideMasters && action.payload.isMasters;
+  const usOnlyFilter = state.settings.hideUsOnly && action.payload.isUsOnly;
+  const payload = { ...action.payload, filter: mastersFilter || usOnlyFilter };
 
-  if (state.settings.hideUsOnly && action.payload.isUsOnly) {
-    console.warn(`filtered us only hit`, action.payload);
-    return;
-  }
-
-  return next(action);
+  return next({ ...action, payload });
 }
 
 function HIT_HISTORY(store, next, action) {
   const state = store.getState();
 
-  const payload = action.payload.filter((hit) => {
-    if (state.settings.hideMasters && hit.isMasters) {
-      console.warn(`filtered masters hit`, hit);
-      return false;
-    }
-
-    if (state.settings.hideUsOnly && hit.isUsOnly) {
-      console.warn(`filtered us only hit`, hit);
-      return false;
-    }
-
-    return true;
+  const payload = action.payload.map((hit) => {
+    const mastersFilter = state.settings.hideMasters && hit.isMasters;
+    const usOnlyFilter = state.settings.hideUsOnly && hit.isUsOnly;
+    return { ...hit, filter: mastersFilter || usOnlyFilter };
   });
 
   return next({ ...action, payload });

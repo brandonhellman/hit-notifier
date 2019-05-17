@@ -35,7 +35,7 @@ function Previous({ hits }) {
 
 function mapStateToProps(state) {
   return {
-    hits: state.hits,
+    hits: state.hits.filter((hit) => hit.filter),
   };
 }
 

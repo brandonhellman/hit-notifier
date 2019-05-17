@@ -2,7 +2,10 @@ import { playAudio } from '../../functions';
 
 function HIT_ADDED(store, action) {
   const state = store.getState();
-  playAudio(state.settings);
+
+  if (!action.payload.filtered) {
+    playAudio(state.settings);
+  }
 }
 
 function SETTINGS_UPDATE(store, action) {
