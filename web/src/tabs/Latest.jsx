@@ -38,7 +38,7 @@ function Latest({ classes, hit }) {
 
 function mapStateToProps(state) {
   return {
-    hit: state.hits.filter((hit) => hit.filter)[0],
+    hit: state.hits.filter((hit) => !hit.filter)[0],
   };
 }
 
