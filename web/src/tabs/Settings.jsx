@@ -49,7 +49,7 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
 
           <TextField
             fullWidth
-            inputProps={{ max: '100', min: '0', step: '1' }}
+            inputProps={{ max: '100', min: '0', step: '10' }}
             label="New HIT Volume"
             onChange={handleNumber(`hitVolume`)}
             type="number"
@@ -66,15 +66,15 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
                   horizontal: 'left',
                 },
               }}
-              onChange={handleValue(`hitSound`)}
-              value={settings.hitSound}
+              onChange={handleValue(`hitAudio`)}
+              value={settings.hitAudio}
             >
               <MenuItem value="">None</MenuItem>
-              <MenuItem value="sweet-alert-1">Sweet Alert 1</MenuItem>
-              <MenuItem value="sweet-alert-2">Sweet Alert 2</MenuItem>
-              <MenuItem value="sweet-alert-3">Sweet Alert 3</MenuItem>
-              <MenuItem value="sweet-alert-4">Sweet Alert 4</MenuItem>
-              <MenuItem value="sweet-alert-5">Sweet Alert 5</MenuItem>
+              <MenuItem value="sweetAlert1">Sweet Alert 1</MenuItem>
+              <MenuItem value="sweetAlert2">Sweet Alert 2</MenuItem>
+              <MenuItem value="sweetAlert3">Sweet Alert 3</MenuItem>
+              <MenuItem value="sweetAlert4">Sweet Alert 4</MenuItem>
+              <MenuItem value="sweetAlert5">Sweet Alert 5</MenuItem>
             </Select>
           </FormControl>
         </CardContent>
@@ -86,12 +86,10 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardHeader title="Filters" />
         <CardContent>
           <FormControlLabel
-            disabled
             control={<Checkbox checked={settings.hideMasters} onChange={handleChecked(`hideMasters`)} />}
             label="Hide Masters"
           />
           <FormControlLabel
-            disabled
             control={<Checkbox checked={settings.hideUsOnly} onChange={handleChecked(`hideUsOnly`)} />}
             label="Hide US Only"
           />

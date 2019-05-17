@@ -4,7 +4,7 @@ export const initialState = {
 
   // Notifications
   hitNotification: true,
-  hitSound: ``,
+  hitAudio: ``,
   hitVolume: 100,
 
   // Filters
