@@ -7,6 +7,7 @@ import reducers from './reducers';
 import { initialState as initialSettings } from './reducers/settings';
 import filter from './middleware/filter';
 import audio from './middleware/audio';
+import notification from './middleware/notification';
 
 const persistConfig = {
   key: `settings`,
@@ -34,7 +35,7 @@ const loggerConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 const logger = createLogger(loggerConfig);
-const store = createStore(persistedReducer, applyMiddleware(filter, audio, logger));
+const store = createStore(persistedReducer, applyMiddleware(filter, audio, notification, logger));
 const persistor = persistStore(store);
 
 export { store, persistor };

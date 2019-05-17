@@ -7,6 +7,8 @@ import sweetAlert3 from '../audio/sweetAlert3.wav';
 import sweetAlert4 from '../audio/sweetAlert4.wav';
 import sweetAlert5 from '../audio/sweetAlert5.wav';
 
+export * from './notification';
+
 export function getDomain(url) {
   const { hostname } = new URL(url);
   const parsed = psl.parse(hostname);
