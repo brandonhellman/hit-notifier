@@ -18,6 +18,7 @@ import { settingsUpdate } from '../redux/actions';
 const styles = {
   formControl: {
     width: `100%`,
+    marginTop: 10,
   },
   select: {
     width: `100%`,
