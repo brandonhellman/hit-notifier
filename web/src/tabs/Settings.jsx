@@ -90,11 +90,11 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardHeader title="Filters" />
         <CardContent>
           <FormControlLabel
-            control={<Checkbox checked={settings.hideMasters} onChange={handleChecked(`hideMasters`)} />}
+            control={<Checkbox checked={settings.filterMasters} onChange={handleChecked(`filterMasters`)} />}
             label="Hide Masters"
           />
           <FormControlLabel
-            control={<Checkbox checked={settings.hideUsOnly} onChange={handleChecked(`hideUsOnly`)} />}
+            control={<Checkbox checked={settings.filterUsOnly} onChange={handleChecked(`filterUsOnly`)} />}
             label="Hide US Only"
           />
         </CardContent>

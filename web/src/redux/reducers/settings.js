@@ -8,8 +8,8 @@ export const initialState = {
   hitVolume: 100,
 
   // Filters
-  hideMasters: false,
-  hideUsOnly: false,
+  filterMasters: false,
+  filterUsOnly: false,
 
   // Panda
   hitCatcher: false,
