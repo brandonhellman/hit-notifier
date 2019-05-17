@@ -8,6 +8,7 @@ import sweetAlert4 from '../audio/sweetAlert4.wav';
 import sweetAlert5 from '../audio/sweetAlert5.wav';
 
 export * from './notification';
+export * from './panda';
 
 export function getDomain(url) {
   const { hostname } = new URL(url);

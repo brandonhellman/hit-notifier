@@ -106,12 +106,10 @@ function Settings({ classes, settings, handleChecked, handleNumber, handleValue 
         <CardHeader title="Panda Buttons" />
         <CardContent>
           <FormControlLabel
-            disabled
             control={<Checkbox checked={settings.hitCatcher} onChange={handleChecked(`hitCatcher`)} />}
             label="HIT Catcher"
           />
           <FormControlLabel
-            disabled
             control={<Checkbox checked={settings.pandaCrazy} onChange={handleChecked(`pandaCrazy`)} />}
             label="Panda Crazy"
           />

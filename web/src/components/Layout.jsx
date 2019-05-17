@@ -29,6 +29,11 @@ function Layout({ classes, children, type }) {
           marginRight: 8,
         },
       },
+      MuiExpansionPanelDetails: {
+        root: {
+          display: `block`,
+        },
+      },
     },
   });
 

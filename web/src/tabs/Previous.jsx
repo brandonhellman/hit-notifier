@@ -9,6 +9,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import PandaButtons from '../components/PandaButtons';
+
 import { getPostedAtOn } from '../functions';
 
 function Previous({ hits }) {
@@ -28,6 +30,7 @@ function Previous({ hits }) {
             <Typography>{getPostedAtOn(hit)}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
+            <PandaButtons hit={hit} />
             <Typography component="div">{renderHTML(hit.html)}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>

@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
+import PandaButtons from '../components/PandaButtons';
+
 import { getPostedAtOn } from '../functions';
 
 const styles = {
@@ -17,6 +19,7 @@ const styles = {
     justifyContent: `center`,
   },
   paper: {
+    display: `block`,
     padding: `10px 5px`,
     lineHeight: 1.5,
   },
@@ -33,6 +36,7 @@ function Latest({ classes, hit }) {
         </Typography>
       </div>
       <Paper className={classes.paper}>
+        <PandaButtons hit={hit} />
         <Typography component="div">{renderHTML(hit.html)}</Typography>
       </Paper>
     </>
