@@ -1,11 +1,12 @@
 const argv = require('yargs').argv;
 const axios = require(`axios`);
-const cheerio = require(`cheerio`);
 const express = require(`express`);
 const http = require(`http`);
+const { JSDOM } = require(`jsdom`);
 const socketIo = require(`socket.io`);
 
 const { delay, port } = require(`./constants`);
+const getProject = require(`./functions/getProject`);
 
 const app = express();
 const server = http.createServer(app);
@@ -57,7 +58,7 @@ function isUsOnly(html) {
   return Boolean(mtsUs || mtsUs2);
 }
 
-function handleHIT(html, url, posted) {
+function handleHit(html, url, posted) {
   const match = html.match(/projects\/([A-Z0-9]+)\/tasks/);
 
   if (!match) {
@@ -78,6 +79,7 @@ function handleHIT(html, url, posted) {
     id: hitSetId,
     isMasters: isMasters(html),
     isUsOnly: isUsOnly(html),
+    project: getProject(html),
   };
 
   handleHistory(hit);
@@ -85,19 +87,16 @@ function handleHIT(html, url, posted) {
 }
 
 function handlePost(post, url) {
-  const $ = cheerio.load(post.message_html);
-  const hits = $(`.ctaBbcodeTable`);
+  const frag = JSDOM.fragment(post.message_html);
+  const mtsHits = frag.querySelectorAll(`.ctaBbcodeTable`);
 
-  for (let i = 0; i < hits.length; i++) {
-    const hit = hits.eq(i);
-    const html = $(`<div>`)
-      .append(hit.clone())
-      .html();
+  [...mtsHits].forEach((hit) => {
+    const hasMturkLink = hit.querySelector(`a[href^="https://worker.mturk.com/"]`);
 
-    if (hit.find(`a[href^="https://worker.mturk.com/"]`)[0] && hit.find(`:contains(Reward)`)[0]) {
-      handleHIT(html, url, post.post_date * 1000);
+    if (hasMturkLink) {
+      handleHit(hit.outerHTML, url, post.post_date * 1000);
     }
-  }
+  });
 }
 
 async function fetchMTC() {
