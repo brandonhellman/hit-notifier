@@ -29,7 +29,7 @@ function Latest({ classes, hit }) {
   return hit ? (
     <>
       <div className={classes.flex}>
-        <Typography gutterBottom>
+        <Typography component="div" gutterBottom>
           {hit.isMasters && <Chip color="secondary" label="Masters" />}
           {hit.isUsOnly && <Chip color="secondary" label="US Only" />}
           <Link href={hit.url}>{getPostedAtOn(hit)}</Link>
