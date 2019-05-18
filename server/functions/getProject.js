@@ -1,4 +1,3 @@
-const cheerio = require(`cheerio`);
 const { JSDOM } = require(`jsdom`);
 
 function getRequesterId(html, frag) {
