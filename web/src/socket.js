@@ -3,7 +3,7 @@ import socketIoClient from 'socket.io-client';
 
 import { connectedUpdate, hitAdded, hitHistory } from './redux/actions';
 
-const url = process.env.NODE_ENV === `production` ? `https://beta.hitnotifier.com/` : `http://localhost:8080`;
+const url = process.env.NODE_ENV === `production` ? window.location.origin : `http://localhost:8080`;
 const socket = socketIoClient(url);
 
 socket.on(`connections`, (data) => {
