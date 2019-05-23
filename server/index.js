@@ -111,12 +111,12 @@ async function fetchTVF() {
 
 async function mturkcrowd() {
   const posts = await fetchMTC();
-  posts.forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
+  [...posts].reverse().forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
 }
 
 async function turkerviewforum() {
   const posts = await fetchTVF();
-  posts.forEach((post) => handlePost(post, `https://forum.turkerview.com/posts/${post.post_id}`));
+  [...posts].reverse().forEach((post) => handlePost(post, `https://forum.turkerview.com/posts/${post.post_id}`));
 }
 
 setInterval(mturkcrowd, delay);
