@@ -51,10 +51,10 @@ function getDescription(html, frag) {
 }
 
 function getReward(html, frag) {
-  const htmlMatch = html.match(/Reward:.+?([0-9.]+)/) ? html.match(/Reward:.+?([0-9.]+)/)[1] : null;
+  const htmlMatch = html.match(/Reward:.+?([0-9.]+)/);
 
   if (htmlMatch) {
-    return Number(htmlMatch[0]);
+    return Number(htmlMatch[1]);
   }
 
   return null;
