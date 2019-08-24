@@ -7,6 +7,7 @@ const socketIo = require(`socket.io`);
 
 const { delay, port } = require(`./constants`);
 const getProject = require(`./functions/getProject`);
+const { fetchPostsMtc } = require('./utils/fetchPostsMtc');
 
 const app = express();
 const server = http.createServer(app);
@@ -88,7 +89,7 @@ function handleHit(html, url, posted) {
 
 function handlePost(post, url) {
   const frag = JSDOM.fragment(post.message_html);
-  const mtsHits = frag.querySelectorAll(`.ctaBbcodeTable`);
+  const mtsHits = frag.querySelectorAll(`.ctaBbcodeTable, .bbTable`);
 
   [...mtsHits].forEach((hit) => {
     const hasMturkLink = hit.querySelector(`a[href^="https://worker.mturk.com/"]`);
@@ -99,18 +100,13 @@ function handlePost(post, url) {
   });
 }
 
-async function fetchMTC() {
-  const response = await axios.get(`https://mturkcrowd.com/api.php?action=getPosts&order_by=post_date&limit=10`);
-  return response.data.posts;
-}
-
 async function fetchTVF() {
   const response = await axios.get(`https://forum.turkerview.com/hub.php?action=getPosts&order_by=post_date&limit=10`);
   return response.data.posts;
 }
 
 async function mturkcrowd() {
-  const posts = await fetchMTC();
+  const posts = await fetchPostsMtc();
   [...posts].reverse().forEach((post) => handlePost(post, `http://mturkcrowd.com/posts/${post.post_id}`));
 }
 
