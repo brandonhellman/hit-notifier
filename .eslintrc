@@ -1,10 +1,10 @@
 {
-  "plugins": ["prettier"],
-  "rules": {
-    "camelcase": 0,
-    "linebreak-style": 0,
-    "max-len": ["error", { "code": 120 }],
-    "quotes": ["error", "backtick"],
-    "prettier/prettier": "error"
-  }
+  "extends": "eslint:recommended",
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "plugins": ["prettier"]
 }
