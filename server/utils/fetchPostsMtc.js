@@ -5,7 +5,14 @@ module.exports.fetchPostsMtc = async function() {
   const threads = await axios.get('https://mturkcrowd.com/forums/daily-work-threads.4/');
   const threadsDOM = new JSDOM(threads.data);
   const latestThread = threadsDOM.window.document.querySelector('.js-threadList > .structItem');
-  const lastPageHref = latestThread.querySelector('.structItem-pageJump > a:last-of-type').href;
+  let pageJump = latestThread.querySelector('.structItem-pageJump');
+  let lastPageHref = '';
+
+  if (pageJump != null) {
+    lastPageHref = latestThread.querySelector('.structItem-pageJump > a:last-of-type').href;
+  } else {
+    lastPageHref = latestThread.querySelector('.structItem-title > a').href;
+  }
 
   const page = await axios.get(`https://mturkcrowd.com${lastPageHref}`);
   const pageDOM = new JSDOM(page.data);
