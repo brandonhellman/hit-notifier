@@ -6,15 +6,14 @@ module.exports.fetchPostsMtc = async function() {
   const threadsDOM = new JSDOM(threads.data);
   const latestThread = threadsDOM.window.document.querySelector('.js-threadList > .structItem');
   let pageJump = latestThread.querySelector('.structItem-pageJump');
-  let lastPageHref = "";
-  
-  if (pageJump != null){
+  let lastPageHref = '';
+
+  if (pageJump != null) {
     lastPageHref = latestThread.querySelector('.structItem-pageJump > a:last-of-type').href;
-  }
-  else {  
+  } else {
     lastPageHref = latestThread.querySelector('.structItem-title > a').href;
   }
-  
+
   const page = await axios.get(`https://mturkcrowd.com${lastPageHref}`);
   const pageDOM = new JSDOM(page.data);
   const posts = pageDOM.window.document.querySelectorAll('.js-post');
